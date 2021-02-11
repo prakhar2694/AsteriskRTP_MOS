@@ -58,7 +58,9 @@ def getChannelId():
     mos1=calculateJitterMos1(rtp1["txjitter"],rtp1["txploss"],rtp1["rtt"])
     mos2=calculateJitterMos1(rtp2["txjitter"],rtp2["txploss"],rtp2["rtt"])
     trtp={"UpMos":mos1,"DownMos":mos2}
-    return trtp
+    tmos=(trtp["UpMos"]+trtp["DownMos"])/2
+    print(tmos)
+    return tmos
 
 def getRtpStats(ch_id):
     rtp=requests.get("http://35.194.53.75:8088/ari/channels/{}/rtp_statistics".format(ch_id),headers=headers)
